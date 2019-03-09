@@ -1,0 +1,23 @@
+{
+  "name": "egg-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "egg-bin dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "egg": "^2.15.1",
+    "egg-mysql": "^3.0.0",
+    "egg-view-nunjucks": "^2.2.0",
+    "koa-is-json": "^1.0.0",
+    "moment": "^2.24.0",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "egg-bin": "^4.10.0"
+  }
+}
