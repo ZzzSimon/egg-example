@@ -6,4 +6,5 @@ module.exports = app => {
     router.get('/login',controller.home.login);
     router.post('/user/login',controller.user.login);
     router.get('/edit',controller.edit.index);
+    router.post('/news/save',controller.news.save);
 };

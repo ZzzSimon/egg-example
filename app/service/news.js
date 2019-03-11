@@ -8,8 +8,12 @@ class NewsService extends Service {
     }
 
     async detail(id = 1){
-        const sql = "SELECT detail FROM news WHERE id = ?";
+        const sql = "SELECT title,detail FROM news WHERE id = ?";
         return await this.app.mysql.query(sql,[id])
+    }
+
+    async save(news = {}){
+        return await this.app.mysql.insert('news',news);
     }
 }
 
