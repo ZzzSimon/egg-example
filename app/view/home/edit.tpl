@@ -1,93 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Markdown Editor</title>
-    <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/public/editormd/editormd.css">
-    <script type="text/javascript" src="/public/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/public/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/public/editormd/editormd.js"></script>
-</head>
-<body>
-<div class="container">
-    <div id="nav-top">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">妖云小离</a>
-                </div>
+{% extends "parent.tpl" %}
 
-                <div class="collapse navbar-collapse" >
-                    <ul class="nav navbar-nav">
-                        <li><a href="/news.htm">文章</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-left">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+{% block head %}
+<title>Markdown Editor</title>
+<link rel="stylesheet" href="/public/editormd/editormd.css">
+<script type="text/javascript" src="/public/editormd/editormd.js"></script>
+{% endblock %}
 
-            </div>
-        </nav>
+{% block content %}
+
+<div class="row">
+    <div class="form-group">
+        <label for="title">文章标题：</label>
+        <input id="title" type="text" class="form-control">
     </div>
-
-    <div id="top" class="row" style="margin-top: 10%"></div>
-    <div class="row">
-
-        <div class="form-group">
-            <label for="title">文章标题：</label>
-            <input id="title" type="text" class="form-control">
-        </div>
-        <div class="form-group pull-right">
-            <button id="save" class="btn btn-success ">保存</button>
-        </div>
-
-
+    <div class="form-group pull-right">
+        <button id="save" class="btn btn-success ">保存</button>
     </div>
-    <div class="row">
-        <div id="layout">
-            <div id="test-editormd"></div>
-        </div>
-    </div>
-
 </div>
+<div class="row">
+    <div id="layout">
+        <div id="test-editormd"></div>
+    </div>
+</div>
+{% endblock %}
 
+
+{% block script %}
 <script type="text/javascript">
 
     let testEditor = editormd("test-editormd", {
         width: "100%",
         height: 740,
         path: '/public/editormd/lib/',
-        theme: "dark",
-        previewTheme: "dark",
-        editorTheme: "pastel-on-dark",
+        // theme: "dark",
+        // previewTheme: "dark",
+        // editorTheme: "pastel-on-dark",
         // markdown: md,
         codeFold: true,
         //syncScrolling : false,
@@ -141,5 +88,4 @@
 
 
 </script>
-</body>
-</html>
+{% endblock %}

@@ -54,5 +54,5 @@ exports.gzip= {
 };
 
 exports.auth ={
-    noAuth:['/login','/user/login']
+    noAuth:['/login.htm','/user/login']
 };

@@ -1,9 +1,12 @@
-<html>
-<head>
-    <title>News</title>
-    <link rel="stylesheet" href="/public/css/news.css" />
-</head>
-<body>
+{% extends "parent.tpl" %}
+
+{% block head %}
+<title>文章列表</title>
+<link rel="stylesheet" href="/public/css/news.css"/>
+{% endblock %}
+
+
+{% block content %}
 <ul class="news-view view">
     {% for item in list %}
     <li class="item">
@@ -11,5 +14,4 @@
     </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}

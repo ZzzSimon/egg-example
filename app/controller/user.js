@@ -14,6 +14,7 @@ class UserController extends Controller{
         }else {
             // 设置 Session
             ctx.session.user = {username:user.username};
+            ctx.cookies.set('username',user.username);
             // 如果用户勾选了 `记住我`，设置 60s 的过期时间
             if (rememberMe) ctx.session.maxAge = this.config.rememberMe;
             ctx.body = {

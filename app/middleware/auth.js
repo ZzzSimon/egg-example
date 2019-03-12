@@ -6,7 +6,7 @@ module.exports = (options, app) => {
         if (typeof(ctx.session.user)!=='undefined' || options.noAuth.includes(ctx.path)) {
             await next();
         }else {
-            ctx.redirect('/login')
+            ctx.redirect('/login.htm')
         }
     }
 };
