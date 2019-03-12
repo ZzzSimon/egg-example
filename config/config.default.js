@@ -1,5 +1,5 @@
 exports.keys = "123456";
-exports.rememberMe = 60 * 1000 ;//选择记住我之后，session有效时长
+exports.rememberMe = 24 * 60 * 60 * 1000 ;//选择记住我之后，session有效时长
 
 exports.security = {
     domainWhiteList:['.127.0.0.1'],  // 安全白名单，以 . 开头
@@ -46,9 +46,13 @@ exports.mysql = {
 };
 
 // 配置需要的中间件，数组顺序即为中间件的加载顺序
-exports.middleware = [ 'gzip' ];
+exports.middleware = [ 'auth','gzip' ];
 
 // 配置 gzip 中间件的配置
 exports.gzip= {
     threshold: 1048576, // 小于 1mb 的响应体不压缩
+};
+
+exports.auth ={
+    noAuth:['/login','/user/login']
 };

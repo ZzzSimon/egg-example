@@ -3,8 +3,7 @@ const Controller = require('egg').Controller;
 class NewsController extends Controller {
     async list() {
         const ctx = this.ctx;
-        const page = ctx.query.page || 1;
-        const newsList = await ctx.service.news.list(page);
+        const newsList = await ctx.service.news.list();
         await ctx.render('news/list.tpl', { list: newsList });
     }
 
@@ -17,12 +16,17 @@ class NewsController extends Controller {
 
     async save(){
         const ctx = this.ctx;
-        ctx.logger.info(ctx.request.body);
-        const result = await ctx.service.news.save(ctx.request.body.news);
+        const news = ctx.request.body.news;
+        news.id = ctx.helper.uuid();
+        news.url = '/news/'+news.id;
+        const result = await ctx.service.news.save(news);
         // 判断插入成功
         const insertSuccess = result.affectedRows === 1;
         if (insertSuccess) {
-            ctx.body = {flag:'1',msg:'保存成功'}
+            // ctx.redirect(news.url);
+            ctx.body = {flag:'1',msg:'保存成功',url:news.url}
+        }else {
+            ctx.body = {flag:'0',msg:'保存失败'}
         }
     }
 }

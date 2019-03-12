@@ -3,50 +3,83 @@
 <head>
     <title>Markdown Editor</title>
     <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/public/highlight/styles/agate.css">
     <link rel="stylesheet" href="/public/editormd/editormd.css">
     <script type="text/javascript" src="/public/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/public/js/showdown.min.js"></script>
     <script type="text/javascript" src="/public/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/public/highlight/highlight.pack.js"></script>
     <script type="text/javascript" src="/public/editormd/editormd.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 <div class="container">
+    <div id="nav-top">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">妖云小离</a>
+                </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <textarea id="oriContent" style="height: 600px;width:100%;" onkeyup="convert()"></textarea>
-        </div>
-        <div class="col-md-6">
-            <div id="result" style="height: 600px;width:100%;background: #0f0f0f" ></div>
-        </div>
+                <div class="collapse navbar-collapse" >
+                    <ul class="nav navbar-nav">
+                        <li><a href="/news.htm">文章</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
     </div>
+
+    <div id="top" class="row" style="margin-top: 10%"></div>
     <div class="row">
-        文章标题：
-        <input id="title" >
+
+        <div class="form-group">
+            <label for="title">文章标题：</label>
+            <input id="title" type="text" class="form-control">
+        </div>
+        <div class="form-group pull-right">
+            <button id="save" class="btn btn-success ">保存</button>
+        </div>
+
+
     </div>
     <div class="row">
         <div id="layout">
             <div id="test-editormd"></div>
         </div>
     </div>
-    <div class="row">
-        <button id="save" title="保存">保存</button>
-    </div>
+
 </div>
 
 <script type="text/javascript">
-    convert();
-
-    function convert() {
-        var text = document.getElementById("oriContent").value;
-        var converter = new showdown.Converter();
-        var html = converter.makeHtml(text);
-        document.getElementById("result").innerHTML = html;
-        hljs.highlightBlock(document.getElementById("result"));
-    }
 
     let testEditor = editormd("test-editormd", {
         width: "100%",
@@ -91,16 +124,18 @@
         }
     });
 
-    $('#save').bind('click',function () {
+    $('#save').bind('click', function () {
         data = {
-            news:{
-                title:$('#title').val(),
-                detail:testEditor.getMarkdown()
+            news: {
+                title: $('#title').val(),
+                detail: testEditor.getMarkdown()
             }
         };
 
-        $.post('/news/save?_csrf={{ ctx.csrf | safe }}',data,function (data) {
-            console.log(data)
+        $.post('/news/save?_csrf={{ ctx.csrf | safe }}', data, function (resp) {
+            if (resp.flag === '1') {
+                window.location.href = resp.url;
+            }
         })
     })
 

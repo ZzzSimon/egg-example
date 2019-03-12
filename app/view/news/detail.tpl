@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>News</title>
+    <title>{{news.title}}</title>
 
     <link rel="stylesheet" href="/public/editormd/editormd.css">
     <script type="text/javascript" src="/public/js/jquery.min.js"></script>
@@ -19,7 +19,7 @@
     <script type="text/javascript" src="/public/editormd/editormd.js"></script>
 </head>
 <body>
-{{news.title}}<br>
+<h1>{{news.title}}</h1>
 <div id="detail" style="visibility: hidden">{{news.detail}}</div>
 <div id="layout">
     <div id="test-editormd-view">
@@ -47,14 +47,6 @@
             flowChart: true,  // 默认不解析
             sequenceDiagram: true,  // 默认不解析
         });
-
-        //console.log("返回一个 jQuery 实例 =>", testEditormdView);
-
-        // 获取Markdown源码
-        //console.log(testEditormdView.getMarkdown());
-
-        //alert(testEditormdView.getMarkdown());
-
 
     });
 </script>
