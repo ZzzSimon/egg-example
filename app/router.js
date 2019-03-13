@@ -11,4 +11,5 @@ module.exports = app => {
     //接口
     router.post('/user/login',controller.user.login);
     router.post('/news/save',controller.news.save);
+    router.post('/edit/uploadPic',controller.edit.uploadPic);
 };

@@ -57,7 +57,13 @@
         //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
         imageUpload: true,
         imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-        imageUploadURL: "./php/upload.php",
+        imageUploadURL: "/edit/uploadPic?_csrf={{ ctx.csrf | safe }}",
+
+   /*  后端需返回：   {
+            success : 0 | 1, //0表示上传失败;1表示上传成功
+            message : "提示的信息",
+            url     : "图片地址" //上传成功时才返回
+        }*/
         onload: function () {
             console.log('onload', this);
             //this.fullscreen();
