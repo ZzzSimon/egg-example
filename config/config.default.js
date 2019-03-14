@@ -8,7 +8,7 @@ module.exports = appInfo => {
         },
         multipart : {
             mode: 'file',
-            tmpdir: path.join(appInfo.baseDir, 'app/public/mdPic'),
+            tmpdir: path.join(appInfo.baseDir, 'app/public/temp'),
         },
         session : {
             key: 'EGG_SESS',
@@ -51,7 +51,7 @@ module.exports = appInfo => {
             threshold: 1048576, // 小于 1mb 的响应体不压缩
         },
         auth : {
-            noAuth:['/login.htm','/user/login']
+            noAuth:['/login.htm','/user/login','/register.htm','/user/register']
         },
     };
 };

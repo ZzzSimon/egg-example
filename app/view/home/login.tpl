@@ -23,7 +23,11 @@
             </label>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-info">登录</button>
+            <button type="submit" class="btn btn-info pull-right">登录</button>
+            <div>
+                <a href="/register.htm" class="btn btn-link pull-right">注册</a>
+            </div>
+
         </div>
     </form>
 </div>

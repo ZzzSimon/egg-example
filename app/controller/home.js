@@ -13,8 +13,11 @@ class HomeController extends Controller {
     }
 
     async login(){
-        const {ctx, service} = this;
-        await ctx.render('home/login.tpl');
+        await this.ctx.render('home/login.tpl');
+    }
+
+    async register(){
+        await this.ctx.render('home/register.tpl')
     }
 }
 

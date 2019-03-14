@@ -7,9 +7,12 @@ module.exports = app => {
     router.get('/login.htm',controller.home.login);
     router.get('/news/:id',controller.news.detail);
     router.get('/news.htm', controller.news.list);
+    router.get('/register.htm', controller.home.register);
 
     //接口
     router.post('/user/login',controller.user.login);
     router.post('/news/save',controller.news.save);
     router.post('/edit/uploadPic',controller.edit.uploadPic);
+    router.post('/user/register',controller.user.register);
+    router.get('/user/userInfo',controller.user.userInfo);
 };

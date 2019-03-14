@@ -19,11 +19,15 @@ class NewsController extends Controller {
         const news = ctx.request.body.news;
         news.id = ctx.helper.uuid();
         news.url = '/news/'+news.id;
+        news.author = ctx.session.user.username;
+        const nowTime = new Date();
+        news.create_time = nowTime;
+        news.update_time = nowTime;
+        console.log(news.visibility);
         const result = await ctx.service.news.save(news);
         // 判断插入成功
         const insertSuccess = result.affectedRows === 1;
         if (insertSuccess) {
-            // ctx.redirect(news.url);
             ctx.body = {flag:'1',msg:'保存成功',url:news.url}
         }else {
             ctx.body = {flag:'0',msg:'保存失败'}

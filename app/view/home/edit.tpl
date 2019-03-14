@@ -13,6 +13,11 @@
         <label for="title">文章标题：</label>
         <input id="title" type="text" class="form-control">
     </div>
+    <div class="checkbox ">
+        <label>
+            <input id="invisible" type="checkbox">保密(勾选后将<strong style="color: red">不显示</strong>在文章列表)
+        </label>
+    </div>
     <div class="form-group pull-right">
         <button id="save" class="btn btn-success ">保存</button>
     </div>
@@ -81,7 +86,8 @@
         data = {
             news: {
                 title: $('#title').val(),
-                detail: testEditor.getMarkdown()
+                detail: testEditor.getMarkdown(),
+                invisible: $('#invisible').prop('checked')  ? 1:0
             }
         };
 

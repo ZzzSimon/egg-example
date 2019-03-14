@@ -15,7 +15,10 @@
 
 
 {% block content %}
-<h1>{{news.title}}</h1>
+<div class="page-header">
+    <h1>{{news.title}} <small style="font-size: small">{{news.author}} 最后更新于 {{helper.formatTime(news.update_time)}}</small></h1>
+</div>
+
 <div id="detail" style="visibility: hidden">{{news.detail}}</div>
 <div id="layout">
     <div id="test-editormd-view">

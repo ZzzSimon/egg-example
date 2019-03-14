@@ -2,7 +2,6 @@
 
 {% block head %}
 <title>文章列表</title>
-<link rel="stylesheet" href="/public/css/news.css"/>
 {% endblock %}
 
 
@@ -10,7 +9,10 @@
 <ul class="news-view view">
     {% for item in list %}
     <li class="item">
-        <a href="{{ item.url }}">{{ item.title }}</a>
+        <dl>
+            <dt><a href="{{ item.url }}">{{ item.title }}</a></dt>
+            <dd><small>{{item.author}}</small> 最后更新于 {{helper.formatTime(item.update_time)}}</dd>
+        </dl>
     </li>
     {% endfor %}
 </ul>

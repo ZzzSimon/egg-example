@@ -39,12 +39,14 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/edit.htm">发表文章</a></li>
+                    <li><a href="/edit.htm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发表文章</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">个人中心 <span class="caret"></span></a>
+                           aria-expanded="false">
+                            <img src="" id="avatarNav" class="img-circle" style="width: 26px; margin-top: -6px">
+                            <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">个人资料</a></li>
+                            <li><a href="#">我的文章</a></li>
                             <li><a href="#">设置</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">注销</a></li>
@@ -77,6 +79,7 @@
         }
         return ""
     }
+    $('#avatarNav').attr('src',getCookie('avatarUrl'));
 </script>
 {% block script %}{% endblock %}
 </body>
