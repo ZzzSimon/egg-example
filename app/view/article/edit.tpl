@@ -84,14 +84,14 @@
 
     $('#save').bind('click', function () {
         data = {
-            news: {
+            article: {
                 title: $('#title').val(),
                 detail: testEditor.getMarkdown(),
                 invisible: $('#invisible').prop('checked')  ? 1:0
             }
         };
 
-        $.post('/news/save?_csrf={{ ctx.csrf | safe }}', data, function (resp) {
+        $.post('/article/save?_csrf={{ ctx.csrf | safe }}', data, function (resp) {
             if (resp.flag === '1') {
                 window.location.href = resp.url;
             }

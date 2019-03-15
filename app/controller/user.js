@@ -6,6 +6,7 @@ class UserController extends Controller{
         this.ctx.session = null;
         this.ctx.redirect('/login.htm')
     }
+
     async login(){
         const ctx = this.ctx;
         ctx.logger.info('req body:: %j',ctx.request.body);
@@ -90,6 +91,7 @@ class UserController extends Controller{
             }
         }
     }
+
 }
 
 module.exports = UserController;

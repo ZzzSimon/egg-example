@@ -1,7 +1,7 @@
 {% extends "parent.tpl" %}
 
 {% block head %}
-<title>{{news.title}}</title>
+<title>{{article.title}}</title>
 <link rel="stylesheet" href="/public/editormd/editormd.css">
 <script src="/public/editormd/lib/marked.min.js"></script>
 <script src="/public/editormd/lib/prettify.min.js"></script>
@@ -16,10 +16,10 @@
 
 {% block content %}
 <div class="page-header">
-    <h1>{{news.title}} <small style="font-size: small">{{news.author}} 最后更新于 {{helper.formatTime(news.update_time)}}</small></h1>
+    <h1>{{article.title}} <small style="font-size: small">{{article.author}} 最后更新于 {{helper.formatTime(article.update_time)}}</small></h1>
 </div>
 
-<div id="detail" style="visibility: hidden">{{news.detail}}</div>
+<div id="detail" style="visibility: hidden">{{article.detail}}</div>
 <div id="layout">
     <div id="test-editormd-view">
 

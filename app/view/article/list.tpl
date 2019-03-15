@@ -6,7 +6,7 @@
 
 
 {% block content %}
-<ul class="news-view view">
+<ul class="article-view view">
     {% for item in list %}
     <li class="item">
         <dl>

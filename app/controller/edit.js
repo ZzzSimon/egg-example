@@ -5,7 +5,7 @@ const fs = require('mz/fs');
 class EditController extends Controller{
     async index(){
         const {ctx, service} = this;
-        await ctx.render('home/edit.tpl');
+        await ctx.render('article/edit.tpl');
     }
 
     async uploadPic(){
