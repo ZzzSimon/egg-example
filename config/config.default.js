@@ -54,8 +54,8 @@ module.exports = appInfo => {
             noAuth:['/login.htm','/user/login','/register.htm','/user/register'],
             noPermission:{
                 admin:[],
-                manager:[],
-                user:['/edit.htm','/news/save','/edit/uploadPic']
+                manager:['/admin'],
+                user:['/admin','/edit.htm','/news/save','/edit/uploadPic']
             }
         },
     };

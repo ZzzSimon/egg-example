@@ -2,6 +2,10 @@ const Controller = require('egg').Controller;
 const fs = require('mz/fs');
 
 class UserController extends Controller{
+    async logout(){
+        this.ctx.session = null;
+        this.ctx.redirect('/login.htm')
+    }
     async login(){
         const ctx = this.ctx;
         ctx.logger.info('req body:: %j',ctx.request.body);

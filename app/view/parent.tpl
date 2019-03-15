@@ -49,7 +49,7 @@
                             <li><a href="#">我的文章</a></li>
                             <li><a href="#">设置</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">注销</a></li>
+                            <li><a href="/user/logout">注销</a></li>
                         </ul>
                     </li>
                 </ul>
