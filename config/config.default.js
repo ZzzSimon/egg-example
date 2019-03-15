@@ -51,7 +51,12 @@ module.exports = appInfo => {
             threshold: 1048576, // 小于 1mb 的响应体不压缩
         },
         auth : {
-            noAuth:['/login.htm','/user/login','/register.htm','/user/register']
+            noAuth:['/login.htm','/user/login','/register.htm','/user/register'],
+            noPermission:{
+                admin:[],
+                manager:[],
+                user:['/edit.htm','/news/save','/edit/uploadPic']
+            }
         },
     };
 };

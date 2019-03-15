@@ -2,15 +2,18 @@ const Service = require('egg').Service;
 
 class UserService extends Service {
     async loginAndGetUser(username, password) {
-
         const user =await this.app.mysql.get('user', {username : username});
-
         if (!user || user.password !== password){
             return false
         } else {
             return user;
         }
+    }
 
+    async getRoleByUsername(username) {
+        const sql = "SELECT role FROM user WHERE username = ?";
+        const role =await this.app.mysql.query(sql, [username]);
+        return role[0].role;
     }
 
     async getUserInfoById(id){

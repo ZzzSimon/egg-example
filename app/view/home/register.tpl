@@ -38,7 +38,8 @@
             reader.readAsDataURL(e.target.files[0]);
             //监听文件读取结束后事件
             reader.onloadend = function (e) {
-                $('#avatarPic').attr("src",e.target.result);    //e.target.result就是最后的路径地址
+                //e.target.result就是最后的路径地址
+                $('#avatarPic').prop("src",e.target.result);
             };
         }
     });

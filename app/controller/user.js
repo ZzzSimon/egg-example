@@ -30,7 +30,9 @@ class UserController extends Controller{
         const ctx = this.ctx;
         const { username, password, phone } = ctx.request.body;
         const avatar = ctx.request.files[0];
+        //默认头像
         let filepathNew = this.config.baseDir+'\\app\\public\\avatar\\default.jpg';
+        //如果用户上传了头像
         if (avatar) {
             console.log('file:%j', avatar);
             let filenameNew = ctx.helper.uuid() +'.'+  avatar.filename.split('.').pop();
