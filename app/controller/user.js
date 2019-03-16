@@ -92,6 +92,48 @@ class UserController extends Controller{
         }
     }
 
+    async myInfo(){
+        const {ctx, service} = this;
+        const userInfo = await service.user.getUserInfoByUsername(ctx.session.user.username);
+        await ctx.render('user/myinfo.tpl',{userInfo:userInfo})
+    }
+
+    async modifyInfo(){
+        const {ctx , service} = this;
+        const { newPassword, phone } = ctx.request.body;
+        const avatar = ctx.request.files[0];
+        const nowTime = new Date();
+        const userModify = {
+            username : ctx.session.user.username,
+            update_time : nowTime
+        };
+        if (newPassword){
+            userModify.password = newPassword;
+        }
+        if (phone){
+            userModify.phone = phone;
+        }
+        //如果用户上传了头像
+        if (avatar) {
+            let filenameNew = ctx.helper.uuid() +'.'+  avatar.filename.split('.').pop();
+            const filepathNew = this.config.baseDir+'\\app\\public\\avatar\\'+filenameNew;
+            userModify.avatar_url = filepathNew.split("\\app")[1];
+            //把临时文件剪切到新目录去
+            await fs.rename(avatar.filepath, filepathNew);
+            ctx.cookies.set('avatarUrl',userModify.avatar_url,{httpOnly:false,maxAge:this.config.rememberMe});
+        }
+        const flag =await service.user.modify(userModify);
+        if (flag){
+            ctx.redirect('/');
+        }else {
+            ctx.body = {
+                successFlag:'N',
+                errorMsg:'修改失败！'
+            }
+        }
+
+    }
+
 }
 
 module.exports = UserController;

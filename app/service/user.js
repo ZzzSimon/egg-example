@@ -25,6 +25,15 @@ class UserService extends Service {
         }
     }
 
+    async getUserInfoByUsername(username){
+        const user =await this.app.mysql.get('user', {username : username});
+        if (!user){
+            return false
+        } else {
+            return user;
+        }
+    }
+
     async save(user){
         const userQ =await this.app.mysql.get('user', {username : user.username});
         if (userQ){
@@ -38,6 +47,16 @@ class UserService extends Service {
             }
         }
         return false
+    }
+
+    async modify(user){
+        const options = {
+            where: {
+                username: user.username
+            }
+        };
+        const res = await this.app.mysql.update('user',user,options);
+        return res.affectedRows === 1;
     }
 
 }

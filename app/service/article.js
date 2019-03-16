@@ -29,7 +29,7 @@ class ArticleService extends Service {
     }
 
     async getArticleById(id){
-        const sql = "SELECT id,title,detail FROM article WHERE id = ?";
+        const sql = "SELECT id,title,detail,invisible FROM article WHERE id = ?";
         const list =await this.app.mysql.query(sql, [id]);
         return list[0];
     }

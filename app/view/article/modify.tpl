@@ -15,7 +15,7 @@
     </div>
     <div class="checkbox ">
         <label>
-            <input id="invisible" type="checkbox">保密(勾选后将<strong style="color: red">不显示</strong>在文章列表)
+            <input id="invisible" type="checkbox" >保密(勾选后将<strong style="color: red">不显示</strong>在文章列表)
         </label>
     </div>
     <div id="detail" style="visibility: hidden">{{article.detail}}</div>
@@ -33,6 +33,8 @@
 
 {% block script %}
 <script type="text/javascript">
+
+    $('#invisible').prop('checked','{{article.invisible}}' === '1' ? 'checked':'');
     const markdown = $('#detail').text();
     let testEditor = editormd("test-editormd", {
         width: "100%",
