@@ -55,7 +55,7 @@ module.exports = appInfo => {
             noPermission:{
                 admin:[],
                 manager:['/admin'],
-                user:['/admin','/edit.htm','/news/save','/edit/uploadPic']
+                user:['/admin','/edit/.*','/modify/.*']
             }
         },
     };

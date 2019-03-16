@@ -3,9 +3,44 @@ const fs = require('mz/fs');
 
 
 class EditController extends Controller{
-    async index(){
+    async editHtm(){
+        await this.ctx.render('article/edit.tpl');
+    }
+
+    async modifyHtm(){
         const {ctx, service} = this;
-        await ctx.render('article/edit.tpl');
+        const article = await service.article.getArticleById(ctx.params.id);
+        await ctx.render('article/modify.tpl',{article:article})
+    }
+
+    async save(){
+        const ctx = this.ctx;
+        const article = ctx.request.body.article;
+        article.id = ctx.helper.uuid();
+        article.url = '/article/'+article.id+'.htm';
+        article.author = ctx.session.user.username;
+        const nowTime = new Date();
+        article.create_time = nowTime;
+        article.update_time = nowTime;
+        const result = await ctx.service.article.save(article);
+        if (result) {
+            ctx.body = {flag:'1',msg:'保存成功',url:article.url}
+        }else {
+            ctx.body = {flag:'0',msg:'保存失败'}
+        }
+    }
+
+    async modify(){
+        const {ctx, service} = this;
+        const article = ctx.request.body.article;
+        const nowTime = new Date();
+        article.update_time = nowTime;
+        const result = await service.article.modify(article);
+        if (result) {
+            ctx.body = {flag:'1',msg:'保存成功',url:'/article/'+article.id+'.htm'}
+        }else {
+            ctx.body = {flag:'0',msg:'保存失败'}
+        }
     }
 
     async uploadPic(){

@@ -12,7 +12,7 @@
     {% for item in list %}
     <li class="item">
         <dl>
-            <dt><a href="{{ item.url }}">{{ item.title }}</a><button class="btn btn-link" onclick='reEdir("{{item.id}}")'>编辑</button></dt>
+            <dt><a href="{{ item.url }}">{{ item.title }}</a><a class="btn btn-link" href='/modify/{{item.id}}.htm'>编辑</a></dt>
             <dd><small>{{item.author}}</small> 最后更新于 {{helper.formatTime(item.update_time)}}</dd>
             <dd></dd>
         </dl>
@@ -24,8 +24,6 @@
 {% block script %}
 <!--此处添加js-->
 <script>
-    function reEdir(artid) {
-        console.log(artid)
-    }
+
 </script>
 {% endblock %}

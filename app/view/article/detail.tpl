@@ -30,7 +30,7 @@
 {%block script%}
 <script type="text/javascript">
     $(function () {
-        let markdown = $('#detail').text();
+        const markdown = $('#detail').text();
         var testEditormdView = editormd.markdownToHTML("test-editormd-view", {
             markdown: markdown,//+ "\r\n" + $("#append-test").text(),
             //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启

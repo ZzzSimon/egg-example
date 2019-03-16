@@ -21,25 +21,7 @@ class ArticleController extends Controller {
         await ctx.render('article/detail.tpl', { article: queryRes[0] });
     }
 
-    async save(){
-        const ctx = this.ctx;
-        const article = ctx.request.body.article;
-        article.id = ctx.helper.uuid();
-        article.url = '/article/'+article.id;
-        article.author = ctx.session.user.username;
-        const nowTime = new Date();
-        article.create_time = nowTime;
-        article.update_time = nowTime;
-        console.log(article.visibility);
-        const result = await ctx.service.article.save(article);
-        // 判断插入成功
-        const insertSuccess = result.affectedRows === 1;
-        if (insertSuccess) {
-            ctx.body = {flag:'1',msg:'保存成功',url:article.url}
-        }else {
-            ctx.body = {flag:'0',msg:'保存失败'}
-        }
-    }
+
 
 
 }
