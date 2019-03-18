@@ -5,3 +5,6 @@
 
 ## 框架教程
 https://eggjs.org/zh-cn/intro/index.html
+
+## 项目教程
+https://www.jianshu.com/nb/35097409
