@@ -11,7 +11,7 @@
 <div class="row">
     <div class="form-group">
         <label for="title">文章标题：</label>
-        <input id="title" type="text" class="form-control" value="{{article.title}}" disabled>
+        <input id="title" type="text" class="form-control" value="{{article.title}}">
     </div>
     <div class="checkbox ">
         <label>
@@ -63,6 +63,7 @@
         data = {
             article: {
                 id: '{{article.id}}',
+                title: $('#title').val(),
                 detail: testEditor.getMarkdown(),
                 invisible: $('#invisible').prop('checked')  ? 1:0
             }

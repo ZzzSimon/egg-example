@@ -2,8 +2,15 @@ const Service = require('egg').Service;
 
 class ArticleService extends Service {
     async list() {
-        const sql = "SELECT url,title,author,update_time FROM article WHERE invisible = ?";
-        const list =await this.app.mysql.query(sql, [0]);
+        const sql = "SELECT url,title,author,update_time FROM article WHERE invisible = 0";
+        const list =await this.app.mysql.query(sql);
+        return list;
+    }
+
+    async search(keyword) {
+        const param = '%'+keyword+'%';
+        const sql = "SELECT url,title,author,update_time FROM article WHERE title LIKE ? AND invisible = 0";
+        const list =await this.app.mysql.query(sql, [param]);
         return list;
     }
 
@@ -23,7 +30,7 @@ class ArticleService extends Service {
     }
 
     async getArticleByAuthor(author){
-        const sql = "SELECT id,url,title,author,update_time FROM article WHERE author = ?";
+        const sql = "SELECT id,url,title,author,update_time,invisible FROM article WHERE author = ?";
         const list =await this.app.mysql.query(sql, [author]);
         return list;
     }

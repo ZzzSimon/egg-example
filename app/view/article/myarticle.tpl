@@ -12,8 +12,8 @@
     {% for item in list %}
     <li class="item">
         <dl>
-            <dt><a href="{{ item.url }}">{{ item.title }}</a><a class="btn btn-link" href='/modify/{{item.id}}.htm'>编辑</a></dt>
-            <dd><small>{{item.author}}</small> 最后更新于 {{helper.formatTime(item.update_time)}}</dd>
+            <dt><small style="color: red">{{helper.formatInvisible(item.invisible)}}</small> <a href="{{ item.url }}">{{ item.title }}</a><a class="btn btn-link" href='/modify/{{item.id}}.htm'>编辑</a></dt>
+            <dd><small>{{item.author}}</small> 最后更新于 {{helper.formatTime(item.update_time)}}  </dd>
             <dd></dd>
         </dl>
     </li>

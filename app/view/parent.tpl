@@ -32,14 +32,19 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                <form class="navbar-form navbar-left" action="/search?_csrf={{ ctx.csrf | safe }}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索" name="keyword">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search " aria-hidden="true"></span>
+                            </button>
+                        </span>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/edit.htm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发表文章</a></li>
+                    <li><a href="/edit.htm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发表文章</a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
@@ -64,22 +69,20 @@
 </div>
 
 <script type="text/javascript">
-    function getCookie(c_name)
-    {
-        if (document.cookie.length>0)
-        {
-            c_start=document.cookie.indexOf(c_name + "=")
-            if (c_start!=-1)
-            {
-                c_start=c_start + c_name.length+1
-                c_end=document.cookie.indexOf(";",c_start)
-                if (c_end==-1) c_end=document.cookie.length
-                return unescape(document.cookie.substring(c_start,c_end))
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=")
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1
+                c_end = document.cookie.indexOf(";", c_start)
+                if (c_end == -1) c_end = document.cookie.length
+                return unescape(document.cookie.substring(c_start, c_end))
             }
         }
         return ""
     }
-    $('#avatarNav').attr('src',getCookie('avatarUrl'));
+
+    $('#avatarNav').attr('src', getCookie('avatarUrl'));
 </script>
 {% block script %}{% endblock %}
 </body>

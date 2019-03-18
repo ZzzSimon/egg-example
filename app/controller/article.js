@@ -21,6 +21,13 @@ class ArticleController extends Controller {
         await ctx.render('article/detail.tpl', { article: queryRes[0] });
     }
 
+    async search(){
+        const ctx = this.ctx;
+        const articleList = await ctx.service.article.search(ctx.query.keyword);
+        ctx.logger.info(ctx.params.keyword,articleList);
+        await ctx.render('article/search.tpl', { list: articleList });
+    }
+
 
 
 

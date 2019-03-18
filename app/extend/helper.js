@@ -12,3 +12,4 @@ exports.uuid = function uuid() {
 //补零
 exports.prefixInteger = (num, n)=> (Array(n).join(0) + num).slice(-n);
 
+exports.formatInvisible = invisible => invisible===1 ? '保密':'';
